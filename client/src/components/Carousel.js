@@ -12,7 +12,7 @@ const Carousel = ({images, id}) => {
         <div id={`image${id}`} className="carousel slide" data-ride="carousel">
             <ol className="carousel-indicators" style={{zIndex: 1}}>
                 {
-                    images.map((img, index) => (
+                    images?.map((img, index) => (
                         <li key={index} data-target={`#image${id}`} 
                         data-slide-to={index} className={isActive(index)} />
                     ))
@@ -22,10 +22,10 @@ const Carousel = ({images, id}) => {
 
             <div className="carousel-inner">
                 {
-                    images.map((img, index) => (
+                    images?.map((img, index) => (
                         <div key={index} className={`carousel-item ${isActive(index)}`}>
                             {
-                                img.url.match(/video/i)
+                                img.url?.match(/video/i)
                                 ? <video controls src={img.url} className="d-block w-100" alt={img.url}
                                 style={{filter: theme ? 'invert(1)' : 'invert(0)'}} />
 

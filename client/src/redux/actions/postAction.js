@@ -52,17 +52,17 @@ export const getPosts = (token) => async (dispatch) => {
     try {
         dispatch({ type: POST_TYPES.LOADING_POST, payload: true })
         const res = await getDataAPI('posts', token)
-        
+
         dispatch({
             type: POST_TYPES.GET_POSTS,
-            payload: {...res.data, page: 2}
+            payload: {...res.data || [], page: 2}
         })
 
         dispatch({ type: POST_TYPES.LOADING_POST, payload: false })
     } catch (err) {
         dispatch({
             type: GLOBALTYPES.ALERT,
-            payload: {error: err.response.data.msg}
+            payload: {error: err?.response?.data?.msg}
         })
     }
 }
